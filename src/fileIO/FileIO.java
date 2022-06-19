@@ -11,15 +11,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileIO {
+import member.Member;
 
-  public static final String[] HEADER = new String[] { "番号", "名前", "ふりがな", "性別", "誕生日" };
+public class FileIO {
 
   /**
    * ファイル読み込み
-   * @param path
-   * @return
-   * @throws IOException
+   * @param path ファイルの場所
+   * @return 文字列配列のリスト
+   * @throws IOException 入出力例外
    */
   public static List<String[]> readCsv(Path path) throws IOException {
     List<String[]> list = new ArrayList<>();
@@ -35,20 +35,16 @@ public class FileIO {
   }
 
   /**
-   * pathで指定したファイルにCsv出力
-   * @param lines
-   * @param path
-   * @throws IOException
+   * pathで指定したファイルにcsv形式で出力
+   * @param lists 1列ごとのデータ
+   * @param path  出力先ファイルの指定
+   * @throws IOException 入出力例外
    */
-  public static void writeCsv(List<String[]> lines, Path path) throws IOException {
+  public static void writeCsv(List<Member> members, Path path) throws IOException {
     try (BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
-      for (String[] line : lines) {
-        for (int i = 0; i < line.length; i++) {
-          if (i != 0) {
-            bw.write(",");
-          }
-          bw.write(line[i]);
-        }
+      for (Member member : members) {
+        bw.write(member.toString());
+        bw.newLine();
       }
     } catch (IOException e) {
       throw new IOException();
