@@ -3,7 +3,6 @@ package conferenceReserve;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import fileIO.FileIO;
@@ -18,11 +17,13 @@ import member.Member;
 public class ConferenceReserve {
 
   /**
-   * あ
-   *
+   * メインメソッド
+   * （テスト）
    * @param args コマンドライン引数
    */
   public static void main(String[] args) {
+
+    // ファイルデータ読み込み
     List<String[]> memberListStr = new ArrayList<>();
     try {
       memberListStr = FileIO.readCsv(Paths.get("./resource/member.csv"));
@@ -30,14 +31,22 @@ public class ConferenceReserve {
       e.printStackTrace();
     }
 
+    // メンバーデータをファイルから登録
     List<Member> memberList = new ArrayList<>();
     for (String[] m : memberListStr) {
-      memberList.add(new Member(m[0], m[1], m[2], m[4]));
+      memberList.add(new Member(m));
     }
 
+    // メンバーを若い順に表示
     memberList.stream()
-        .sorted(Comparator.comparing(Member::getBirthday).reversed())
+        //        .sorted(Comparator.comparing(Member::getBirthday).reversed())
         .forEach(System.out::println);
+
+    try {
+      FileIO.writeCsv(memberList, Paths.get("./resource/members.csv"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
 }
