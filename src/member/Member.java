@@ -9,6 +9,8 @@ package member;
 public class Member {
   /** 番号 */
   private int number;
+  /** パスワード */
+  private String pass;
   /** 名前 */
   private String name;
   /** なまえ */
@@ -28,12 +30,29 @@ public class Member {
    *
    * @param str - 配列 [0]名前 [1]ルビ [2]性別 [3]誕生日
    */
-  public Member(String[] str) throws NumberFormatException, ArrayIndexOutOfBoundsException {
+  public Member(String[] str)
+      throws NumberFormatException, ArrayIndexOutOfBoundsException {
     this.number = BASE + COUNT++;
+    this.pass = "alpha" + String.valueOf(this.number);
     this.name = str[0];
     this.ruby = str[1];
     this.gender = str[2];
     this.birthday = str[3];
+  }
+
+  /**
+   * String配列でのコンストラクタ
+   *
+   * @param str - 配列 [0]名前 [1]ルビ [2]性別 [3]誕生日
+   */
+  public Member(String name, String ruby, String gender, String birthday)
+      throws NumberFormatException, ArrayIndexOutOfBoundsException {
+    this.number = BASE + COUNT++;
+    this.pass = "alpha" + String.valueOf(this.number);
+    this.name = name;
+    this.ruby = ruby;
+    this.gender = gender;
+    this.birthday = birthday;
   }
 
   /**
@@ -46,12 +65,37 @@ public class Member {
   }
 
   /**
+   * パスワードを再設定するメソッド
+   *
+   * @param pass - パスワード
+   */
+  public void setPass(String pass) {
+    this.pass = pass;
+  }
+
+  /**
+   * @return pass
+   */
+  public String getPass() {
+    return pass;
+  }
+
+  /**
    * 名前取得メソッド
    *
    * @return name - 名前
    */
   public String getName() {
     return name;
+  }
+
+  /**
+   * 名前を設定するメソッド
+   *
+   * @param name - 名前
+   */
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
@@ -64,12 +108,30 @@ public class Member {
   }
 
   /**
+   * なまえを設定するメソッド
+   *
+   * @param ruby - 名前
+   */
+  public void setRuby(String ruby) {
+    this.ruby = ruby;
+  }
+
+  /**
    * 性別取得メソッド
    *
    * @return gender - 性別
    */
   public String getGender() {
     return gender;
+  }
+
+  /**
+   * 性別を設定するメソッド
+   *
+   * @param gender - 性別
+   */
+  public void setGender(String gender) {
+    this.gender = gender;
   }
 
   /**
@@ -82,6 +144,15 @@ public class Member {
   }
 
   /**
+   * 誕生日を設定するメソッド
+   *
+   * @param birthday - 誕生日
+   */
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
+
+  /**
    * 文字列化メソッド
    *
    * @return 文字列
@@ -90,6 +161,14 @@ public class Member {
   public String toString() {
     return this.number + "," + this.name + ","
         + this.ruby + "," + this.gender + "," + this.birthday;
+  }
+
+  public void show() {
+    System.out.println("1. 名前    ;" + this.name);
+    System.out.println("2. なまえ  :" + this.ruby);
+    System.out.println("3. 性別    :" + this.gender);
+    System.out.println("4. 誕生日  :" + this.birthday);
+    System.out.println();
   }
 
 }

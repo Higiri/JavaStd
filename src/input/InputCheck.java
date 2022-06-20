@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
  */
 public class InputCheck {
   /**
-   * 名前の文字列ルールに準拠しているか判定するメソッド
-   * 氏名の間にスペースを入れること
+   * 名前の文字列ルールに準拠しているか判定するメソッド<BR>
+   * 名字 + スペース + 名前
    *
    * @param str - 判定する文字列
-   * @return true OK / false NG
+   * @return true - OK / false - NG
    */
   public static Boolean isMatchName(String str) {
     Pattern pattern = Pattern.compile("^[^\\s]+[\\s][^\\s]+");
@@ -25,6 +25,21 @@ public class InputCheck {
       return true;
     }
     return false;
+  }
+
+  /**
+   * 性別の文字列ルールに準拠しているか判定するメソッド<BR>
+   * 「男」「女」「他」
+   *
+   * @param str
+   * @return true - 男/女/他 / false - その他
+   */
+  public static Boolean isMatchGender(String str) {
+    if (str.equals("男") || str.equals("女") || str.equals("他")) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -38,6 +53,19 @@ public class InputCheck {
       LocalDate.parse(str,
           DateTimeFormatter.ofPattern("uuuu/MM/dd").withResolverStyle(ResolverStyle.STRICT));
     } catch (DateTimeParseException e) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * メンバー情報変更の機能リストの数値範囲かを判定するメソッド
+   *
+   * @param num - 入力数値
+   * @return true - 範囲内 / false - 範囲外
+   */
+  public static Boolean isMatchChangeMemberInfo(int num) {
+    if (num < 0 || 5 < num) {
       return false;
     }
     return true;
