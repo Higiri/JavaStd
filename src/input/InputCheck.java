@@ -12,6 +12,20 @@ import java.util.regex.Pattern;
  *
  */
 public class InputCheck {
+
+  /**
+   * IDの数字ルールに準拠しているかを判定すうｒメソッド
+   *
+   * @param str - 文字列
+   * @return true - 6桁の数字 / false - その他
+   */
+  public static Boolean isMatchId(String str) {
+    if (100000 <= Integer.parseInt(str) && Integer.parseInt(str) < 1000000) {
+      return true;
+    }
+    return false;
+  }
+
   /**
    * 名前の文字列ルールに準拠しているか判定するメソッド<BR>
    * 名字 + スペース + 名前

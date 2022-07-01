@@ -1,5 +1,7 @@
 package member;
 
+import java.util.Date;
+
 /**
  * .
  *
@@ -8,7 +10,7 @@ package member;
  */
 public class Member {
   /** 番号 */
-  private int number;
+  private int id;
   /** パスワード */
   private String pass;
   /** 名前 */
@@ -19,6 +21,8 @@ public class Member {
   private String gender;
   /** 誕生日 */
   private String birthday;
+  /** 登録日 */
+  private Date registDay;
 
   /** 番号初期値 */
   private static int COUNT = 1;
@@ -32,8 +36,8 @@ public class Member {
    */
   public Member(String[] str)
       throws NumberFormatException, ArrayIndexOutOfBoundsException {
-    this.number = BASE + COUNT++;
-    this.pass = "alpha" + String.valueOf(this.number);
+    this.id = BASE + COUNT++;
+    this.pass = "alpha" + String.valueOf(this.id);
     this.name = str[0];
     this.ruby = str[1];
     this.gender = str[2];
@@ -47,8 +51,8 @@ public class Member {
    */
   public Member(String name, String ruby, String gender, String birthday)
       throws NumberFormatException, ArrayIndexOutOfBoundsException {
-    this.number = BASE + COUNT++;
-    this.pass = "alpha" + String.valueOf(this.number);
+    this.id = BASE + COUNT++;
+    this.pass = "alpha" + String.valueOf(this.id);
     this.name = name;
     this.ruby = ruby;
     this.gender = gender;
@@ -60,8 +64,8 @@ public class Member {
    *
    * @return number - 番号
    */
-  public int getNumber() {
-    return number;
+  public int getId() {
+    return id;
   }
 
   /**
@@ -159,15 +163,15 @@ public class Member {
    */
   @Override
   public String toString() {
-    return this.number + "," + this.name + ","
+    return this.id + "," + this.name + ","
         + this.ruby + "," + this.gender + "," + this.birthday;
   }
 
   public void show() {
-    System.out.println("1. 名前    ;" + this.name);
-    System.out.println("2. なまえ  :" + this.ruby);
-    System.out.println("3. 性別    :" + this.gender);
-    System.out.println("4. 誕生日  :" + this.birthday);
+    System.out.println("名前    ;" + this.name);
+    System.out.println("なまえ  :" + this.ruby);
+    System.out.println("性別    :" + this.gender);
+    System.out.println("誕生日  :" + this.birthday);
     System.out.println();
   }
 
