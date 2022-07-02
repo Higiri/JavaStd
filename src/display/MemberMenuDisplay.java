@@ -4,30 +4,30 @@ import java.util.Arrays;
 
 import input.InputCheck;
 
-public class MainMenuDisplay extends AbstractDisplay {
+public class MemberMenuDisplay extends AbstractDisplay {
 
   @Override
   public String createMenu() {
     int width = Arrays
-        .stream(MainMenu.values())
+        .stream(MemberMenu.values())
         .mapToInt(s -> s.label.length())
         .max()
         .getAsInt() * 2 + 5;
 
-    final String mainMenuMessage = "実行したいメニューを以下から選択してください。";
+    final String memberMenuMessage = "実行したいメニューを以下から選択してください。";
 
     StringBuilder menuStr = new StringBuilder();
 
     menuStr.append(LINE_SEPARATOR);
-    menuStr.append(mainMenuMessage);
+    menuStr.append(memberMenuMessage);
     menuStr.append(LINE_SEPARATOR);
 
     menuStr.append("+".repeat(width));
     menuStr.append(LINE_SEPARATOR);
-    for (MainMenu mainMenu : MainMenu.values()) {
-      menuStr.append(String.format("%2s", mainMenu.itemNum));
+    for (MemberMenu memberMenu : MemberMenu.values()) {
+      menuStr.append(String.format("%2s", memberMenu.itemNum));
       menuStr.append(": ");
-      menuStr.append(mainMenu.label);
+      menuStr.append(memberMenu.label);
       menuStr.append(LINE_SEPARATOR);
     }
     menuStr.append("+".repeat(width));
@@ -44,15 +44,15 @@ public class MainMenuDisplay extends AbstractDisplay {
       menuNum = acceptOrder();
     } while (!InputCheck.isMatchMainMenu(menuNum));
 
-    switch (MainMenu.valueOf(Integer.parseInt(menuNum))) {
-      case MEMBER:
+    switch (MemberMenu.valueOf(Integer.parseInt(menuNum))) {
+      case SHOW:
         MemberMenuDisplay memberMenu = new MemberMenuDisplay();
         memberMenu.execute();
         break;
-      case RESERVEMENU:
+      case FILTER:
         System.out.println("予約管理");
         break;
-      case STATISTICS:
+      case REGISTER:
         System.out.println("統計");
         break;
       case CANCEL:
@@ -60,7 +60,6 @@ public class MainMenuDisplay extends AbstractDisplay {
       default:
         break;
     }
-
   }
 
 }

@@ -42,7 +42,7 @@ public class MembersList {
    * メンバー登録メソッド<BR>
    * 標準入力を促し、その入力値からメンバーを追加する
    */
-  public void memberResister() {
+  public Member memberResister() {
     String name = "";
     String ruby = "";
     String gender = "";
@@ -52,31 +52,31 @@ public class MembersList {
       System.out.println("名前を入力してください。 [氏 名]");
       name = Input.inputStr();
       if (name.equals("q")) {
-        return;
+        return null;
       }
     } while (!InputCheck.isMatchName(name));
     do {
       System.out.println("名前を入力してください。 [みょうじ なまえ]");
       ruby = Input.inputStr();
       if (ruby.equals("q")) {
-        return;
+        return null;
       }
     } while (!InputCheck.isMatchName(ruby));
     do {
       System.out.println("性別を入力してください。 [男/女/他]");
       gender = Input.inputStr();
       if (gender.equals("q")) {
-        return;
+        return null;
       }
     } while (!InputCheck.isMatchGender(gender));
     do {
       System.out.println("誕生日を入力してください。 [yyy/MM/dd]");
       birthday = Input.inputStr();
       if (birthday.equals("q")) {
-        return;
+        return null;
       }
     } while (!InputCheck.isMatchBirthday(birthday));
-    addMember(new Member(name, ruby, gender, birthday));
+    return new Member(name, ruby, gender, birthday);
   }
 
   /**

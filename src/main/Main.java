@@ -11,7 +11,7 @@ public class Main {
 
       MainMenuDisplay mainMenu = new MainMenuDisplay();
       //mainMenu.execute();
-      mainMenu.display(mainMenu.createMenu());
+      mainMenu.execute();
 
     } catch (Exception e) {
       System.out.println(e);

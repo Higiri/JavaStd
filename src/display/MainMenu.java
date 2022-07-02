@@ -1,20 +1,18 @@
 package display;
 
 public enum MainMenu {
-  MemberMenu(1, "メンバー管理画面", MainMenuItem.Member),
-  ReserveMenu(2, "予約管理画面", MainMenuItem.ReserveMenu),
-  StatisticsMenu(3, "統計画面", MainMenuItem.Statistics),
-  CancelMenu(99, "終了", null),
+  MEMBER(1, "メンバー管理画面"),
+  RESERVEMENU(2, "予約管理画面"),
+  STATISTICS(3, "統計画面"),
+  CANCEL(9, "終了"),
   ;
 
   public final int itemNum;
   public final String label;
-  public final MainMenuItem mainMenuItem;
 
-  MainMenu(int itemNum, String label, MainMenuItem mainMenuItem) {
+  MainMenu(int itemNum, String label) {
     this.itemNum = itemNum;
     this.label = label;
-    this.mainMenuItem = mainMenuItem;
   }
 
   public static MainMenu valueOf(int itemNum) {

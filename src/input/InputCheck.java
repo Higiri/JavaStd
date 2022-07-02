@@ -86,13 +86,24 @@ public class InputCheck {
   }
 
   /**
+   * メインメニューの数値範囲かを判定するメソッド
    *
+   * @param num - 入力数値
+   * @return true - 範囲内 / false - 範囲外
    */
-  public static void main(String[] args) {
-    String str = "";
-    do {
-      str = Input.inputStr();
-    } while (!isMatchBirthday(str));
-    System.out.println(str);
+  public static Boolean isMatchMainMenu(String numStr) {
+    try {
+      int num = Integer.parseInt(numStr);
+      if (num == 9)
+        return true;
+      else if (num < 1 || 3 < num) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (NumberFormatException e) {
+      return false;
+    }
   }
+
 }
