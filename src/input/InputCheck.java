@@ -134,7 +134,7 @@ public class InputCheck {
   public static Boolean isMatchMemberShow(String numStr) {
     try {
       int num = Integer.parseInt(numStr);
-      if (num < 1 || 9 < num || num == 7) {
+      if (num < 1 || 9 < num || num == 6 || num == 7) {
         return false;
       } else {
         return true;

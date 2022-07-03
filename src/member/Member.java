@@ -188,6 +188,8 @@ public class Member {
 
   public static String formatHeader(int nameWidth) {
     StringBuilder sb = new StringBuilder();
+    sb.append("-".repeat(nameWidth + 34));
+    sb.append(System.lineSeparator());
     sb.append(format("ID", 6));
     sb.append(" ");
     sb.append(format("名前", nameWidth));
@@ -200,6 +202,13 @@ public class Member {
     sb.append(System.lineSeparator());
     sb.append("-".repeat(nameWidth + 34));
 
+    return sb.toString();
+  }
+
+  public static String footer(int nameWidth) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("-".repeat(nameWidth + 34));
+    sb.append(System.lineSeparator());
     return sb.toString();
   }
 

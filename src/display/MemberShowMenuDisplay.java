@@ -56,6 +56,8 @@ public class MemberShowMenuDisplay extends AbstractDisplay {
         .max()
         .getAsInt() * 2 - 1;
 
+    MemberMenuDisplay memberMenu = new MemberMenuDisplay();
+
     switch (MemberShowMenu.valueOf(Integer.parseInt(menuNum))) {
       case ID:
         display(Member.formatHeader(nameWidth));
@@ -63,6 +65,8 @@ public class MemberShowMenuDisplay extends AbstractDisplay {
             .stream()
             .sorted(Comparator.comparing(Member::getId))
             .forEach(m -> display(m.formatShow(nameWidth)));
+        display(Member.footer(nameWidth));
+        memberMenu.execute();
         break;
       case NAME:
         display(Member.formatHeader(nameWidth));
@@ -70,6 +74,8 @@ public class MemberShowMenuDisplay extends AbstractDisplay {
             .stream()
             .sorted(Comparator.comparing(Member::getRuby).thenComparing(Member::getId))
             .forEach(m -> display(m.formatShow(nameWidth)));
+        display(Member.footer(nameWidth));
+        memberMenu.execute();
         break;
       case GENDER:
         display(Member.formatHeader(nameWidth));
@@ -77,6 +83,8 @@ public class MemberShowMenuDisplay extends AbstractDisplay {
             .stream()
             .sorted(Comparator.comparing(Member::getGender).thenComparing(Member::getId))
             .forEach(m -> display(m.formatShow(nameWidth)));
+        display(Member.footer(nameWidth));
+        memberMenu.execute();
         break;
       case BIRTHDAY:
         display(Member.formatHeader(nameWidth));
@@ -84,6 +92,8 @@ public class MemberShowMenuDisplay extends AbstractDisplay {
             .stream()
             .sorted(Comparator.comparing(Member::getBirthday).thenComparing(Member::getId))
             .forEach(m -> display(m.formatShow(nameWidth)));
+        display(Member.footer(nameWidth));
+        memberMenu.execute();
         break;
       case REGISTDAY:
         display(Member.formatHeader(nameWidth));
@@ -91,9 +101,10 @@ public class MemberShowMenuDisplay extends AbstractDisplay {
             .stream()
             .sorted(Comparator.comparing(Member::getRegistDay).thenComparing(Member::getId))
             .forEach(m -> display(m.formatShow(nameWidth)));
+        display(Member.footer(nameWidth));
+        memberMenu.execute();
         break;
       case BACK:
-        MemberMenuDisplay memberMenu = new MemberMenuDisplay();
         memberMenu.execute();
       case CANCEL:
         return;
