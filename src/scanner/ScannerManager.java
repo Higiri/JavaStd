@@ -6,7 +6,7 @@ public class ScannerManager {
   /** スキャナーの宣言 */
   private Scanner stdin = null;
   /** スキャナーのインスタンス */
-  static ScannerManager instance = new ScannerManager();
+  public static ScannerManager instance = new ScannerManager();
 
   /**
    * コンストラクタの非公開<BR>

@@ -18,7 +18,6 @@ public class MemberMenuDisplay extends AbstractDisplay {
 
     StringBuilder menuStr = new StringBuilder();
 
-    menuStr.append(LINE_SEPARATOR);
     menuStr.append(memberMenuMessage);
     menuStr.append(LINE_SEPARATOR);
 
@@ -42,12 +41,13 @@ public class MemberMenuDisplay extends AbstractDisplay {
       display(createMenu());
       inputSupportDisplay(inputSupport);
       menuNum = acceptOrder();
-    } while (!InputCheck.isMatchMainMenu(menuNum));
+      display("");
+    } while (!InputCheck.isMatchMemberMenu(menuNum));
 
     switch (MemberMenu.valueOf(Integer.parseInt(menuNum))) {
       case SHOW:
-        MemberMenuDisplay memberMenu = new MemberMenuDisplay();
-        memberMenu.execute();
+        MemberShowMenuDisplay memberShowMenu = new MemberShowMenuDisplay();
+        memberShowMenu.execute();
         break;
       case FILTER:
         System.out.println("予約管理");

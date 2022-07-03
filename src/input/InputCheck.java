@@ -106,4 +106,42 @@ public class InputCheck {
     }
   }
 
+  /**
+   * メンバーメニューの数値範囲かを判定するメソッド
+   *
+   * @param num - 入力数値
+   * @return true - 範囲内 / false - 範囲外
+   */
+  public static Boolean isMatchMemberMenu(String numStr) {
+    try {
+      int num = Integer.parseInt(numStr);
+      if (num < 1 || 9 < num || num == 6 || num == 7) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
+
+  /**
+   * 表示メニューの数値範囲かを判定するメソッド
+   *
+   * @param num - 入力数値
+   * @return true - 範囲内 / false - 範囲外
+   */
+  public static Boolean isMatchMemberShow(String numStr) {
+    try {
+      int num = Integer.parseInt(numStr);
+      if (num < 1 || 9 < num || num == 7) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
+
 }

@@ -1,6 +1,8 @@
 package member;
 
-import java.util.Date;
+import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * .
@@ -22,7 +24,7 @@ public class Member {
   /** 誕生日 */
   private String birthday;
   /** 登録日 */
-  private Date registDay;
+  private LocalDate registDay;
 
   /** 番号初期値 */
   private static int COUNT = 1;
@@ -36,12 +38,13 @@ public class Member {
    */
   public Member(String[] str)
       throws NumberFormatException, ArrayIndexOutOfBoundsException {
-    this.id = BASE + COUNT++;
+    this.id = Integer.parseInt(str[0]);
     this.pass = "alpha" + String.valueOf(this.id);
-    this.name = str[0];
-    this.ruby = str[1];
-    this.gender = str[2];
-    this.birthday = str[3];
+    this.name = str[1];
+    this.ruby = str[2];
+    this.gender = str[3];
+    this.birthday = str[4];
+    this.registDay = LocalDate.now();
   }
 
   /**
@@ -157,6 +160,13 @@ public class Member {
   }
 
   /**
+   * @return registDay
+   */
+  public LocalDate getRegistDay() {
+    return registDay;
+  }
+
+  /**
    * 文字列化メソッド
    *
    * @return 文字列
@@ -168,11 +178,53 @@ public class Member {
   }
 
   public void show() {
-    System.out.println("名前    ;" + this.name);
+    System.out.println("ID      :" + this.id);
+    System.out.println("名前    :" + this.name);
     System.out.println("なまえ  :" + this.ruby);
     System.out.println("性別    :" + this.gender);
     System.out.println("誕生日  :" + this.birthday);
     System.out.println();
+  }
+
+  public static String formatHeader(int nameWidth) {
+    StringBuilder sb = new StringBuilder();
+    sb.append(format("ID", 6));
+    sb.append(" ");
+    sb.append(format("名前", nameWidth));
+    sb.append(" ");
+    sb.append("性別");
+    sb.append(" ");
+    sb.append(format("誕生日", 10));
+    sb.append(" ");
+    sb.append(format("登録日", 10));
+    sb.append(System.lineSeparator());
+    sb.append("-".repeat(nameWidth + 34));
+
+    return sb.toString();
+  }
+
+  public String formatShow(int nameWidth) {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append(format(String.valueOf(this.id), 6));
+    sb.append(" ");
+    sb.append(format(this.name, nameWidth));
+    sb.append(" ");
+    sb.append(format(this.gender, 4));
+    sb.append(" ");
+    sb.append(this.birthday);
+    sb.append(" ");
+    sb.append(this.registDay.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+    return sb.toString();
+  }
+
+  private static String format(String target, int length) {
+    int byteDiff = (getByteLength(target, Charset.forName("UTF-8")) - target.length()) / 2;
+    return String.format("%-" + (length - byteDiff) + "s", target);
+  }
+
+  private static int getByteLength(String string, Charset charset) {
+    return string.getBytes(charset).length;
   }
 
 }

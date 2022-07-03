@@ -11,21 +11,34 @@ import input.InputCheck;
 
 public class MembersList {
   /** メンバーリスト */
-  private List<Member> memberList = new ArrayList<>();
+  public static List<Member> memberList = new ArrayList<>() {
+    {
+      try {
+        addAll(initialList(FileIO.readCsv(Paths.get("./resource/member.csv"))));
+      } catch (IOException | ArrayIndexOutOfBoundsException e) {
+        e.printStackTrace();
+      }
+    }
+  };
 
   /**
-   * コンストラクタ<BR>
-   * メンバーリスト生成
+   * コンストラクタ非公開
    */
-  public MembersList() {
-    try {
-      List<String[]> memberListStr = FileIO.readCsv(Paths.get("./resource/member.csv"));
-      for (String[] member : memberListStr) {
-        memberList.add(new Member(member));
-      }
-    } catch (IOException | ArrayIndexOutOfBoundsException e) {
-      e.printStackTrace();
+  private MembersList() {
+  }
+
+  /**
+   * 初期リスト生成メソッド
+   *
+   * @param dataList
+   * @return
+   */
+  private static List<Member> initialList(List<String[]> dataList) {
+    List<Member> list = new ArrayList<>();
+    for (String[] data : dataList) {
+      list.add(new Member(data));
     }
+    return list;
   }
 
   /**
@@ -84,7 +97,7 @@ public class MembersList {
    *
    * @return memberList
    */
-  public List<Member> getMemberList() {
+  public static List<Member> getMemberList() {
     return memberList;
   }
 }

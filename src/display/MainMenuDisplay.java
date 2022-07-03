@@ -18,7 +18,6 @@ public class MainMenuDisplay extends AbstractDisplay {
 
     StringBuilder menuStr = new StringBuilder();
 
-    menuStr.append(LINE_SEPARATOR);
     menuStr.append(mainMenuMessage);
     menuStr.append(LINE_SEPARATOR);
 
@@ -42,6 +41,7 @@ public class MainMenuDisplay extends AbstractDisplay {
       display(createMenu());
       inputSupportDisplay(inputSupport);
       menuNum = acceptOrder();
+      display("");
     } while (!InputCheck.isMatchMainMenu(menuNum));
 
     switch (MainMenu.valueOf(Integer.parseInt(menuNum))) {
